@@ -1,51 +1,82 @@
 # Briefly
 
-Briefly is an evidence-first pre-meeting intelligence product. It researches the previous 30 days, ranks public sources, then creates a concise decision brief with linked evidence, a meeting thesis, practical conversation moves, questions, and watchouts.
+## Evidence-first intelligence for important meetings
+
+Briefly helps you enter a high-stakes conversation prepared. Give it a company or person, a meeting date, and the outcome you want. It researches relevant developments from the previous 30 days and creates a concise, source-linked briefing with:
+
+- An executive summary and meeting thesis
+- Material recent developments with confidence labels
+- A source ledger for verification
+- A practical conversation plan
+- Questions to carry into the room
+- Watchouts and uncertainty signals
+
+## Why Briefly
+
+Meeting preparation is often scattered across search tabs, press releases, company pages, and news articles. Briefly turns that fragmented research into a focused decision brief while keeping evidence attached to the claims that matter.
+
+## Technology
+
+- Streamlit for the interactive application
+- Tavily for recent web research
+- OpenAI Structured Outputs for consistent briefing generation
+- A source-ranking and evidence-normalization layer between retrieval and synthesis
 
 ## Run locally
 
-```powershell
-cd "C:\Users\KIIT\Desktop\hackathon"
+```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Open `http://localhost:8501` in your browser.
+The application opens at `http://localhost:8501`.
 
-## API keys
-
-The local Tavily key is read from `.streamlit/secrets.toml`. That file is intentionally ignored by Git and must never be committed.
-
-To enable AI synthesis, add your own OpenAI key to the same local file:
+For local development, credentials can be provided through Streamlit's secrets mechanism:
 
 ```toml
 TAVILY_API_KEY = "tvly-your-key"
 OPENAI_API_KEY = "sk-your-key"
 ```
 
-If no OpenAI key is configured, Briefly still retrieves and displays a source-backed evidence ledger without inventing conclusions.
+Save that content as `.streamlit/secrets.toml` on your own machine. Never commit the file or publish API keys in the repository.
 
-## Safe GitHub submission
+## Deploy on Streamlit Community Cloud
 
-Before creating or pushing a repository, verify that secrets are ignored:
+Briefly is designed to deploy directly from GitHub.
 
-```powershell
-git status --short
-git check-ignore .streamlit/secrets.toml
+1. Open [Streamlit Community Cloud](https://share.streamlit.io/) and sign in with GitHub.
+2. Select **Create app**.
+3. Choose the repository `sk-ux-coder/briefly`.
+4. Select branch `main`.
+5. Set the entrypoint to `app.py`.
+6. Open **Advanced settings**.
+7. In the **Secrets** field, add:
+
+```toml
+TAVILY_API_KEY = "tvly-your-key"
+OPENAI_API_KEY = "sk-your-key"
 ```
 
-The second command should print `.streamlit/secrets.toml`. Never upload that file. If a secret is ever committed or publicly exposed, revoke it and generate a replacement immediately.
+8. Click **Deploy**.
+
+The deployed app receives its own `streamlit.app` URL. API keys belong in the deployment's Secrets settings, not in GitHub. See the [official deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [official secrets guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management).
 
 ## Architecture
 
 ```text
 Meeting context
     ↓
-Tavily retrieval (30-day window)
+Tavily retrieval - previous 30 days
     ↓
-Source normalization + quality ranking
+Source normalization and quality ranking
     ↓
-OpenAI Structured Outputs (optional)
+Evidence packet
     ↓
-Decision brief + evidence ledger + meeting plan
+OpenAI structured synthesis
+    ↓
+Decision brief, evidence ledger, and meeting plan
 ```
+
+## Repository
+
+[github.com/sk-ux-coder/briefly](https://github.com/sk-ux-coder/briefly)
