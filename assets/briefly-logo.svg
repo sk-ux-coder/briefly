@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" role="img" aria-labelledby="title desc">
+  <title id="title">Briefly</title>
+  <desc id="desc">Briefly meeting intelligence</desc>
+  <defs>
+    <linearGradient id="mark" x1="12" y1="8" x2="104" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6657E8"/>
+      <stop offset="1" stop-color="#A875F4"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="28" y1="26" x2="84" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9E7FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="108" height="108" rx="32" fill="#111827" stroke="#38415E" stroke-width="2"/>
+  <path d="M30 35c0-6.6 5.4-12 12-12h36c6.6 0 12 5.4 12 12v29c0 6.6-5.4 12-12 12H57L42 91V76h-0c-6.6 0-12-5.4-12-12z" fill="url(#mark)"/>
+  <path d="M46 44h28M46 57h18" fill="none" stroke="url(#spark)" stroke-linecap="round" stroke-width="7"/>
+  <path d="M83 29l2.4 6.6L92 38l-6.6 2.4L83 47l-2.4-6.6L74 38l6.6-2.4z" fill="#fff"/>
+  <text x="138" y="77" fill="#F7F8FF" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">briefly</text>
+</svg>
